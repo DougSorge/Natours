@@ -1,0 +1,70 @@
+/* ---------------------- Animations Start ---------------------- */
+@keyframes heading-fade-in-left{
+  0%{
+      opacity: 0;
+      transform: translateX(-20%);
+      font-size: .2rem;
+  }
+
+  80%{
+    opacity: .7;
+    /* transform: translateX(1%); */
+  }
+
+  90%{
+    opacity: .9
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+    /* font-size: 4rem; */
+  }
+}
+
+/* subheading */
+@keyframes subheading-fade-in-right{
+  0%{
+      opacity: 0;
+      transform: translateX(20%);
+      font-size: .2rem;
+  }
+
+  80%{
+    opacity: .7;
+    /* transform: translateX(-1%); */
+  }
+
+  90%{
+    opacity: .9
+  }
+
+  100%{
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* btn fade in */
+@keyframes btn-appear{
+  0%{
+    opacity: 0;
+  }
+
+  50%{
+    opacity: 0;
+  }
+
+  75%{
+    opacity: .5
+  }
+
+  90%{
+    opacity: .8
+  }
+
+  100%{
+    opacity: 1;
+  }
+}
+/* ---------------------- Animations End ---------------------- */

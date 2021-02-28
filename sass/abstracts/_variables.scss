@@ -1,0 +1,19 @@
+// color variables;
+$color-primary: #55c57a;
+$color-light: #7ed56f; 
+$color-dark: #28b485; 
+$color-gray-dark: #777;
+$color-gray-light-1: #f7f7f7;
+$color-white: #fff;
+$color-black: #000;
+
+/* These variables will make it easier for us to repeatedly set these colors on our elements. It will also allow me to universally change all set colors if need be.*/
+
+
+//Grid variables
+$grid-width: 114rem;
+$gutter-vertical: 8rem;
+$gutter-horizontal: 6rem;
+
+//fonts
+$default-font-size: 1.6rem;

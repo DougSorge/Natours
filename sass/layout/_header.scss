@@ -1,0 +1,52 @@
+
+/* ---------------------- Header Start ---------------------- */
+.header{
+  height: 95vh;
+  background-image: 
+    linear-gradient(to right bottom,
+    rgba($color-light, 0.8),
+    rgba($color-dark, 0.8)),
+    url('../img/hero.jpg');
+  background-size: cover;
+  background-position: top;
+
+  /* - Clip Path + polygon specifies where  the image WILL STILL BE VISIBLE and not what gets clipped off.
+     - The polygon funciton accepts coordinates with which we can create a shape. Each set of coordinates are x and y values separated by a comma. Importantly, the x and y numbers themselves are not wrapped in parenthesis or separated by a comma. 
+     - The points of the visible shape are set by using offset from the top left of the image or element that we are clipping. So in this case, when we say x is 100% we are setting that point completely opposite of the left hand side of the element.
+  */
+  clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
+  position: relative;
+
+
+  /* REMINDER - when setting an element to absolute positioning, the top, left, right and bottom offsets will adjust the element based on the parent container. In our case, the header. So, the top and left attributes of logo-box will move the div based on the header element. */
+  &__logo-box{
+    position: absolute;
+    top: 4rem;
+    left: 4rem;
+  }
+
+  &__logo{
+    height: 3.5rem;
+  }
+
+  &__logo:hover{
+    transform: translateY(-2px);
+  }
+
+  &__center-heading{
+    position: absolute;
+    text-align: center;
+    /* 
+    - Combining top and left with translate and absolute positioning allows us to EASILY center and object within its parent container.
+    - When setting top and left we are moving the specified element 50% across the container and 50% down, however, this sets the left edge of our element where we want causing it to look displaced further to the right and down.
+    - To adjust the element back over to the left and into the middle where we want, we add on transform translate(x , y). This moves the element over and up based on its own width and height.
+    - Basically, by using translate, we are setting the midpoint of the element as its left edge. Now, we can use top, left bottom and right to essentially drag around our element from its midpoint. Success! 
+  */
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+
+

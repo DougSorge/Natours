@@ -1,251 +1,297 @@
-/*
-COLORS:
-
-Light green: #7ed56f
-Medium green: #55c57a
-Dark green: #28b485
-
-*/
-
-
+/* These variables will make it easier for us to repeatedly set these colors on our elements. It will also allow me to universally change all set colors if need be.*/
 /* In this universal selector we are removing margin and padding as well as changing the box model to measure the width / height from border to border. This is a standard universal reset. */
-*{
+*,
+*::after,
+*::before {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
+  box-sizing: inherit; }
+
+/*
+  - We have set the overall font size to 10px so that we can easily manipulate and set our properties using the rem unit type. Nice
+  -However, if we set the root to a px amount, the default font size set by the user on their browser will be overridden. This is bad practice for accessibility reasons.
+  -The solution is to set the root font size as a percentage. In our case, we wanted 10px as a default font size. Assuming that the browser default is set to the standard 16, we have determined that 10 is 62.5% of 16 and set our root size as such.
+  - Since we have determined 62.5% is how we want to scale our properties, everything will be adjusted properly even if the user has set their default size on the broswer to 18 or 24 or whatever else. Our styles will be 62.5% of the users default fs.
+*/
+html {
+  font-size: 62.5%; }
 
 /* Setting font declarations in the body standardizes the fonts for the whole page. Since styles are inherited all font will now have these properties unless overwritten. */
-body{
+body {
+  box-sizing: border-box; }
+
+/* ---------------------- Animations Start ---------------------- */
+@keyframes heading-fade-in-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-20%);
+    font-size: .2rem; }
+  80% {
+    opacity: .7;
+    /* transform: translateX(1%); */ }
+  90% {
+    opacity: .9; }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    /* font-size: 4rem; */ } }
+
+/* subheading */
+@keyframes subheading-fade-in-right {
+  0% {
+    opacity: 0;
+    transform: translateX(20%);
+    font-size: .2rem; }
+  80% {
+    opacity: .7;
+    /* transform: translateX(-1%); */ }
+  90% {
+    opacity: .9; }
+  100% {
+    opacity: 1;
+    transform: translateX(0); } }
+
+/* btn fade in */
+@keyframes btn-appear {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 0; }
+  75% {
+    opacity: .5; }
+  90% {
+    opacity: .8; }
+  100% {
+    opacity: 1; } }
+
+/* ---------------------- Animations End ---------------------- */
+body {
   font-family: 'Lato', Arial, sans-serif;
   font-weight: 400;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 1.7;
   color: #777;
-  padding: 30px;
-}
+  padding: 2rem; }
 
-/* These variables will make it easier for us to repeatedly set these colors on our elements. It will also allow me to universally change all set colors if need be.*/
-:root{
-  --clr-light: #7ed56f;
-  --clr-medium: #55c57a;
-  --clr-dark: #28b485;
-}
+.heading-primary {
+  color: #fff;
+  /*
+   prevents shaky janky animations 
+    - This is a hack for animations but is intended to hide or show backside of elements upon 3d rotations
+   */
+  backface-visibility: hidden; }
+  .heading-primary--top {
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: 3.5rem;
+    display: block;
+    /* duration | name | delay */
+    animation: 1.3s heading-fade-in-left;
+    /*
+      This determines how slow or fast the animation happens within the   specified duration
+      */
+    animation-timing-function: ease-in-out;
+    /*
+      - Iteration count determines how many loops the animation will run
+      animation-iteration-count: 3; 
+      */ }
+  .heading-primary--bottom {
+    font-weight: 400;
+    font-size: 2rem;
+    letter-spacing: .7rem;
+    display: block;
+    animation: 1.3s subheading-fade-in-right ease-in-out; }
+
+/* ---------------------- Header End ---------------------- */
+.heading-secondary {
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  display: inline-block;
+  font-weight: 700;
+  color: transparent;
+  background: linear-gradient(to right, #7ed56f, #28b485);
+  -webkit-background-clip: text;
+  letter-spacing: 2px;
+  transition: all .2s; }
+  .heading-secondary:hover {
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.5); }
+
+.tertiary-heading {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-transform: uppercase; }
+
+.paragraph {
+  font-size: 1.6rem; }
+  .paragraph:not(:last-child) {
+    margin-bottom: 3rem; }
+
+.u-center-text {
+  text-align: center; }
+
+.u-margin-bottom-small {
+  margin-bottom: 1.5rem; }
+
+.u-margin-bottom-med {
+  margin-bottom: 4rem; }
+
+.u-margin-bottom-big {
+  margin-bottom: 8rem; }
 
 /* ---------------------- Header Start ---------------------- */
-.header{
+.header {
   height: 95vh;
-  background-image: 
-    linear-gradient(to right bottom,
-    rgba(126, 213, 111, 0.801),
-    rgba(40, 180, 133, 0.801)),
-    url('../img/hero.jpg');
+  background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.8), rgba(40, 180, 133, 0.8)), url("../img/hero.jpg");
   background-size: cover;
   background-position: top;
-
   /* - Clip Path + polygon specifies where  the image WILL STILL BE VISIBLE and not what gets clipped off.
      - The polygon funciton accepts coordinates with which we can create a shape. Each set of coordinates are x and y values separated by a comma. Importantly, the x and y numbers themselves are not wrapped in parenthesis or separated by a comma. 
      - The points of the visible shape are set by using offset from the top left of the image or element that we are clipping. So in this case, when we say x is 100% we are setting that point completely opposite of the left hand side of the element.
   */
   clip-path: polygon(0 0, 100% 0, 100% 75vh, 0 100%);
   position: relative;
-}
-
-/* REMINDER - when setting an element to absolute positioning, the top, left, right and bottom offsets will adjust the element based on the parent container. In our case, the header. So, the top and left attributes of logo-box will move the div based on the header element. */
-.logo-box{
-  position: absolute;
-  top: 40px;
-  left: 40px;
-}
-
-.logo{
-  height: 35px;
-}
-
-.logo:hover{
-  transform: translateY(-2px);
-}
-
-.center-heading{
-  position: absolute;
-  text-align: center;
-  /* 
+  /* REMINDER - when setting an element to absolute positioning, the top, left, right and bottom offsets will adjust the element based on the parent container. In our case, the header. So, the top and left attributes of logo-box will move the div based on the header element. */ }
+  .header__logo-box {
+    position: absolute;
+    top: 4rem;
+    left: 4rem; }
+  .header__logo {
+    height: 3.5rem; }
+  .header__logo:hover {
+    transform: translateY(-2px); }
+  .header__center-heading {
+    position: absolute;
+    text-align: center;
+    /* 
     - Combining top and left with translate and absolute positioning allows us to EASILY center and object within its parent container.
     - When setting top and left we are moving the specified element 50% across the container and 50% down, however, this sets the left edge of our element where we want causing it to look displaced further to the right and down.
     - To adjust the element back over to the left and into the middle where we want, we add on transform translate(x , y). This moves the element over and up based on its own width and height.
     - Basically, by using translate, we are setting the midpoint of the element as its left edge. Now, we can use top, left bottom and right to essentially drag around our element from its midpoint. Success! 
   */
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%); }
 
-.heading-primary{
-  color: white;
+.row {
+  max-width: 114rem;
+  margin: 0 auto; }
+  .row:not(:last-child) {
+    margin-bottom: 8rem; }
+  .row::after {
+    content: "";
+    display: table;
+    clear: both; }
+  .row [class^="col-"] {
+    float: left; }
+    .row [class^="col-"]:not(:last-child) {
+      margin-right: 6rem; }
+  .row .col-1-of-2 {
+    width: calc((100% - 6rem) / 2); }
+  .row .col-1-of-3 {
+    width: calc((100% - (2 * 6rem)) / 3); }
+  .row .col-2-of-3 {
+    width: calc(2 * ((100% - (2 * 6rem)) / 3)  + 6rem); }
+  .row .col-1-of-4 {
+    width: calc((100% - (3 * 6rem)) / 4); }
+  .row .col-2-of-4 {
+    width: calc( 2 * ((100% - (3 * 6rem)) / 4)  + 6rem); }
+  .row .col-3-of-4 {
+    width: calc( 3 * ((100% - (3 * 6rem)) / 4)  + ( 2 * 6rem)); }
 
-
-  /*
-   prevents shaky janky animations 
-    - This is a hack for animations but is intended to hide or show backside of elements upon 3d rotations
-   */
-  backface-visibility: hidden;
-}
-
-.heading-primary-top{
-  font-size: 4rem;
-  font-weight: 700;
-  letter-spacing: 1.8rem;
-  display: block;
-
-  /* duration | name | delay */
-  animation: 1.3s heading-fade-in-left;
-
-  /*
-   This determines how slow or fast the animation happens within the specified duration
-   */
-  animation-timing-function: ease-in-out;
-
-  /*
-   - Iteration count determines how many loops the animation will run
-  animation-iteration-count: 3; 
-  */
-}
-
-.heading-primary-bottom{
-  font-weight: 400;
-font-size: 1.4rem;  
-letter-spacing: .7rem;
-display: block;
-animation: 1.3s subheading-fade-in-right ease-in-out;
-}
-/* ---------------------- Header End ---------------------- */
+.composition {
+  position: relative; }
+  .composition__photo {
+    width: 60%;
+    box-shadow: 0.5rem 1.5rem 4rem rgba(0, 0, 0, 0.4);
+    position: absolute;
+    outline-offset: 2rem;
+    transition: all .2s; }
+    .composition__photo--p1 {
+      left: 0;
+      top: -2rem; }
+    .composition__photo--p2 {
+      left: 42%;
+      top: 3rem; }
+    .composition__photo--p3 {
+      left: 20%;
+      top: 15rem; }
+    .composition__photo:hover {
+      transform: scale(1.05) translateY(-1rem);
+      box-shadow: 0.7rem 2.5rem 4rem rgba(0, 0, 0, 0.5);
+      z-index: 100;
+      outline: 1.5rem solid #55c57a; }
+  .composition:hover .composition__photo:not(:hover) {
+    transform: scale(0.95); }
 
 /* ---------------------- Header Btn Start ---------------------- */
-.btn:link, 
-.btn:visited{
+.btn:link, .btn:visited {
   text-decoration: none;
   text-transform: uppercase;
-  padding: 6px 30px;
-  border-radius: 25px;
+  padding: .6rem 3rem;
+  border-radius: 2.5rem;
   display: inline-block;
-  margin-top: 25px;
+  margin-top: 2.5rem;
   position: relative;
-  font-size: 1.2rem;
-}
+  font-size: 1.6rem;
+  backface-visibility: hidden; }
 
-.btn:hover{
-  transform: translateY(-2px);
-  box-shadow: 0 10px 20px rgba(0,0,0, .4);
-}
-
-.btn:active{
-  transform: translateY(1px);
-  box-shadow: 0 5px 10px rgba(0,0,0, .6);
-}
-
-.btn-white{
-  background-color: white;
-  color: #777;
-  transition: all .3s; 
-}
-
-.btn::after{
+.btn::after {
   content: '';
   display: inline-block;
   height: 100%;
   width: 100%;
-  border-radius: 25px;
+  border-radius: 2.5rem;
   position: absolute;
   top: 0;
   left: 0;
   transition: all .3s;
-  z-index: -1;
-}
+  z-index: -1; }
 
-.btn-white::after{
-  background-color:white;
-}
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4); }
 
-.btn-animate:hover::after{
-  transform: scale(1.1, 1.4);
-  opacity: 0;
-}
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.6); }
 
-.btn-animated{
+.btn--white {
+  background-color: #fff;
+  color: #777;
+  transition: all .3s; }
+  .btn--white::after {
+    background-color: #fff; }
+
+.btn--animated {
   animation: btn-appear 1.3s ease-out .6s;
-  animation-fill-mode: backwards;
-}
+  animation-fill-mode: backwards; }
+  .btn--animated:hover::after {
+    transform: scale(1.1, 1.4);
+    opacity: 0;
+    backface-visibility: hidden; }
+
 /* ---------------------- Header Btn End ---------------------- */
+.btn-text:link, .btn-text:visited {
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  font-size: 1.6rem;
+  transition: all .2s; }
 
+.btn-text:hover {
+  transform: translateX(-2px);
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0.5rem 1rem 1rem rgba(0, 0, 0, 0.5); }
 
-/* ---------------------- Animations Start ---------------------- */
-/* main heading */
-@keyframes heading-fade-in-left{
-  0%{
-      opacity: 0;
-      transform: translateX(-20%);
-      font-size: .2rem;
-  }
+.btn-text:active {
+  transform: translateY(0);
+  box-shadow: 0.2rem 0.5rem 0.5rem rgba(0, 0, 0, 0.8); }
 
-  80%{
-    opacity: .7;
-    /* transform: translateX(1%); */
-  }
-
-  90%{
-    opacity: .9
-  }
-
-  100%{
-    opacity: 1;
-    transform: translateX(0);
-    /* font-size: 4rem; */
-  }
-}
-
-/* subheading */
-@keyframes subheading-fade-in-right{
-  0%{
-      opacity: 0;
-      transform: translateX(20%);
-      font-size: .2rem;
-  }
-
-  80%{
-    opacity: .7;
-    /* transform: translateX(-1%); */
-  }
-
-  90%{
-    opacity: .9
-  }
-
-  100%{
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* btn fade in */
-@keyframes btn-appear{
-  0%{
-    opacity: 0;
-  }
-
-  50%{
-    opacity: 0;
-  }
-
-  75%{
-    opacity: .5
-  }
-
-  90%{
-    opacity: .8
-  }
-
-  100%{
-    opacity: 1;
-  }
-}
-/* ---------------------- Animations End ---------------------- */
+.section-about {
+  background-color: #f7f7f7;
+  padding: 25rem 0;
+  margin-top: -25vh; }

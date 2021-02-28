@@ -1,0 +1,79 @@
+body{
+  font-family: 'Lato', Arial, sans-serif;
+  font-weight: 400;
+  font-size: $default-font-size;
+  line-height: 1.7;
+  color: $color-gray-dark;
+  padding: 2rem;
+}
+
+.heading-primary{
+  color: $color-white;
+  /*
+   prevents shaky janky animations 
+    - This is a hack for animations but is intended to hide or show backside of elements upon 3d rotations
+   */
+  backface-visibility: hidden;
+
+    &--top{
+      font-size: 6rem;
+      font-weight: 700;
+      letter-spacing: 3.5rem;
+      display: block;
+  
+      /* duration | name | delay */
+      animation: 1.3s heading-fade-in-left;
+  
+      /*
+      This determines how slow or fast the animation happens within the   specified duration
+      */
+      animation-timing-function: ease-in-out;
+  
+      /*
+      - Iteration count determines how many loops the animation will run
+      animation-iteration-count: 3; 
+      */
+  }
+  
+    &--bottom{
+      font-weight: 400;
+      font-size: 2rem;  
+      letter-spacing: .7rem;
+      display: block;
+      animation: 1.3s subheading-fade-in-right ease-in-out;
+   }
+}
+/* ---------------------- Header End ---------------------- */
+
+
+.heading-secondary{
+  text-transform: uppercase;
+  font-size: 3.5rem;
+  display: inline-block;
+  font-weight: 700;
+  color: transparent;
+  background: linear-gradient(to right, $color-light, $color-dark );
+  -webkit-background-clip: text;
+  letter-spacing: 2px;
+  transition: all .2s;
+  
+
+  &:hover{
+    transform: skewY(2deg) skewX(15deg) scale(1.1);
+    text-shadow: .5rem 1rem 1rem rgba($color-black, .5);
+  }
+}
+
+.tertiary-heading{
+  font-size: $default-font-size;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.paragraph{
+  font-size: $default-font-size;
+  
+  &:not(:last-child){
+    margin-bottom: 3rem;
+  }
+}
