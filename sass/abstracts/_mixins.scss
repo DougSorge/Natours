@@ -1,0 +1,66 @@
+@mixin clearfix {
+  &::after{
+    content: "";
+    display: table;
+    clear: both;
+  } 
+} 
+
+@mixin center{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//Media Queries
+/*
+0-600px : Phones
+
+600-900px: Tablet (vertical)
+
+900-1200px: Tablet (horizontal)
+
+1200-1800px: Desktop [Normal Styles..we dont need a query for this]
+
+1800px+: Large Desktop
+*/
+
+
+/* 
+$breakpoint argument choices
+- phone
+- tablet-vert
+-tablet-horiz
+-big-desktop
+*/
+
+/*
+ORDER FOR WRITING QUERY STYLES
+
+1. Base + Typography
+2. General Layour + Grid
+3. Page Layout
+4. Components
+*/
+
+
+
+// 1em =16px
+@mixin respond($breakpoint) {
+  @if $breakpoint == phone {
+    @media (max-width: 37.5em){ @content }; // < 600px
+  }
+
+  @if $breakpoint == tablet-horiz {
+    @media (max-width: 75em){ @content }; // < 1200px
+  }
+
+  @if $breakpoint == tablet-vert {
+    @media (max-width: 56.25em){ @content }; // < 900px
+  }
+
+  @if $breakpoint == big-desktop {
+    @media (min-width: 112.5em ){ @content }; //1800+
+  }
+}

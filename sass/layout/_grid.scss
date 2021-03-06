@@ -4,6 +4,19 @@
 
   &:not(:last-child){
     margin-bottom: $gutter-vertical;
+
+    @include respond(tablet-vert){
+      margin-bottom: $gutter-vertical-small;
+    }
+  }
+
+  @include respond(tablet-vert){
+    max-width: 50rem;
+  }
+
+  @include respond(phone){
+   max-width: none; 
+   padding: 0 3rem;
   }
 
   @include clearfix;
@@ -11,8 +24,18 @@
   [class^="col-"]{
   
     float: left;
+
     &:not(:last-child){
       margin-right: $gutter-horizontal;
+
+      @include respond(tablet-vert){
+        margin-right: 0;
+        margin-bottom: $gutter-vertical-small;
+      }
+    }
+
+    @include respond(tablet-vert){
+      width: 100% !important;
     }
   }
 

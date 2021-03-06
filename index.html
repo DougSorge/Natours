@@ -13,8 +13,26 @@
         <title>Natours | Exciting tours for adventurous people</title>
     </head>
     <body>
-<<<<<<< Updated upstream
-=======
+
+        <div class="navigation">
+            <input type="checkbox" class="navigation__checkbox" id="nav-toggle">
+            <label for="nav-toggle" class="navigation__button">
+                <span class="navigation__button--line">&nbsp;</span>
+            </label>
+            <div class="navigation__background">
+                &nbsp;
+            </div>
+            <nav class="navigation__nav">
+                <ul class="navigation__list">
+                    <li class="navigation__item"><a class="navigation__link" href="#about"><span>01</span> About Natours</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#benefits"><span>02</span> Your Benefits</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#tours"><span>03</span> Popular Tours</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#stories"><span>04</span> Stories</a></li>
+                    <li class="navigation__item"><a class="navigation__link" href="#book"><span>05</span> Book Now</a></li>
+                </ul>
+            </nav>
+        </div>
+
         <header class="header">
             <div class="header__logo-box">
                 <img class="header__logo" src="img/logo-white.png" alt="logo which looks like a crown with 3 points">
@@ -30,7 +48,7 @@
         </header>
 
         <main>
-           <section class="section-about">
+           <section class="section-about" id="about">
                <div class="u-center-text u-margin-bottom-big">
                    <h2 class="heading-secondary">
                        Exciting tours for adventurous people
@@ -51,15 +69,32 @@
 
                    <div class="col-1-of-2">
                     <div class="composition">
-                        <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
+
+                        <!-- These properties are used to display different size images based on browser width -->
+                        <img srcset="img/nat-1.jpg 300w, img/nat-1-large.jpg 1000w" alt="photo of a forest"
+                             sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                             class="composition__photo composition__photo--p1"
+                             src="img/nat-1-large.jpg">
+
+                        <img srcset="img/nat-2.jpg 300w, img/nat-2-large.jpg 1000w" alt="photo of a forest"
+                            sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                            class="composition__photo composition__photo--p2"
+                            src="img/nat-2-large.jpg">
+                        
+                        <img srcset="img/nat-3.jpg 300w, img/nat-3-large.jpg 1000w" alt="photo of a desert"
+                            sizes="(max-width: 56.25em) 20vw, (max-width: 37.5em) 30vw, 300px" 
+                            class="composition__photo composition__photo--p3"
+                            src="img/nat-3-large.jpg">
+
+                        <!-- <img src="img/nat-1-large.jpg" alt="Photo 1" class="composition__photo composition__photo--p1">
                         <img src="img/nat-2-large.jpg" alt="Photo 2" class="composition__photo composition__photo--p2">
-                        <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3">
+                        <img src="img/nat-3-large.jpg" alt="Photo 3" class="composition__photo composition__photo--p3"> -->
                     </div>
                    </div>
             </div>
            </section>
 
-           <section class="section-features">
+           <section class="section-features" id="benefits">
                <div class="row">
                    <div class="col-1-of-4">
                        <div class="feature-box">
@@ -95,7 +130,8 @@
                </div>
            </section>
 
-            <section class="section-tours">
+            
+            <section class="section-tours" id="tours">
                 <div class="u-center-text u-margin-bottom-big">
                     <h2 class="heading-secondary">
                         Most Popular Tours
@@ -130,7 +166,7 @@
                                         <p class="card__price-pre">Only</p>
                                         <p class="card__price-cost">$297</p>
                                     </div>
-                                    <a href="#" class="btn btn--white btn--animated">Book Now</a>
+                                    <a href="#popup" class="btn btn--white btn--animated">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -163,7 +199,7 @@
                                         <p class="card__price-pre">Only</p>
                                         <p class="card__price-cost">$497</p>
                                     </div>
-                                    <a href="#" class="btn btn--white btn--animated">Book Now</a>
+                                    <a href="#popup" class="btn btn--white btn--animated">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -195,8 +231,9 @@
                                     <div class="card__price-box">
                                         <p class="card__price-pre">Only</p>
                                         <p class="card__price-cost">$897</p>
+                                       
                                     </div>
-                                    <a href="#" class="btn btn--white btn--animated">Book Now</a>
+                                    <a href="#popup" class="btn btn--white btn--animated">Book Now</a>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +245,7 @@
                 </div>
             </section>
 
-            <section class="section-stories">
+            <section class="section-stories" id="#stories">
                 <div class="bg-video">
                     <video class="bg-video__content" autoplay muted loop>
                         <source src="img/video.mp4" type="video/mp4">
@@ -271,7 +308,7 @@
                 </div>
             </section>
            
-        <section class="section-booking">
+        <section class="section-booking" id="#book">
              <div class="row">
                 <div class="book">
                     <div class="book__form">
@@ -325,7 +362,13 @@
        <footer class="section-footer">
            <div class="footer">
                <div class="footer__logo-box">
-                   <img class="footer__logo-img" src="img/logo-green-2x.png" alt="">
+                    <picture class="footer__logo">
+                        <source srcset="img/logo-green-small-1x.png 1x, img/logo-green-small-2x.png 2x" 
+                            media="(max-width: 37.5em)">
+                        <img class="footer__logo-img" 
+                            srcset="img/logo-green-1x.png 1x, img/logo-green-2x.png 2x" src="img/logo-green-2x.png" alt="logo">
+                    </picture>
+                   
                </div>
 
             <div class="row">
@@ -343,16 +386,37 @@
 
                 <div class="col-1-of-2">
                     <div class="footer__copyright">
-                        <p class="footer__outro">
+                        <p class="footer__copyright-copy">
                             Built by <a href="#" class="footer__link">JONAS SCHMEDTMANN</a> for his online course <a href="#" class="footer__link">ADVANCED CSS AND SASS</a>. Copyright&copy; by Jonas Schmedtmann. You are 100% allowed to use this webpage for both personal and commercial uses, but not to claim it as your own design. A credit to the original author, Jonas Schmedtmann, is of course always appreciated!
                         </p>
                     </div>
                 </div>
             </div>
            </div>
-       </footer>
->>>>>>> Stashed changes
+        </footer>
         
+        <div class="popup" id="popup">
+            <div class="popup__content">
+              <div class="popup__left">
+                <img src="img/nat-8.jpg" alt="tour-photo" class="popup__img">
+                <img src="img/nat-9.jpg" alt="tour-photo" class="popup__img">
+              </div>
+              <div class="popup__right">
+                  <a href="#section-tours" class="popup__close">&times;</a>
+                <h2 class="heading-secondary u-margin-bottom-med">
+                    Start Booking Now
+                </h2>
+                <h3 class="tertiary-heading u-margin-bottom-small">Important &ndash; Please Read Terms Before Continuing</h3>
+                <p class="popup__text">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dicta sunt vel eaque ab rem possimus, voluptate modi? Animi porro alias provident at, nesciunt illum commodi quasi molestiae ipsam repellat!
+                    Error perferendis beatae quidem quod quibusdam sint nesciunt. Ratione soluta quo distinctio aspernatur veritatis quasi autem, animi repellat? Cum dolore facilis est quaerat illo aliquam voluptas non nisi ea nostrum.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dicta sunt vel eaque ab rem possimus, voluptate modi? Animi porro alias provident at, nesciunt illum commodi quasi molestiae ipsam repellat!
+                    Error perferendis beatae quidem quod quibusdam sint nesciunt. Ratione soluta quo distinctio aspernatur veritatis quasi autem, animi repellat? Cum dolore facilis est quaerat illo aliquam voluptas non nisi ea nostrum.
+                </p>
+                <a href="#" class="btn btn--green">Book Now</a>
+              </div>
+            </div>
+        </div>
         
     </body>
 </html>

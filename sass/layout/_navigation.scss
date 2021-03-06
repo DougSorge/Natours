@@ -1,0 +1,184 @@
+.navigation{
+
+  &__checkbox{
+    display: none;
+  }
+
+  &__checkbox:checked ~ &__background{
+    transform: scale(100);
+  }
+
+  &__checkbox:checked ~ &__nav{
+    opacity: 1;
+    visibility: visible;
+    transition: all 2s;
+  }
+
+  // &__checkbox:checked + &__button &__button--line{
+  //   background-color: transparent;
+  // }
+
+  &__checkbox:checked + &__button &__button--line::before{
+    transform: translateY(-1.2rem);
+    
+  }
+
+  &__checkbox:checked + &__button &__button--line::after{
+    transform: translateY(1.2rem);
+    
+  }
+
+
+  &__button{
+    background-color: $color-white;
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 4rem;
+    right: 5rem;
+    z-index: 1003;
+    box-shadow: 0 1rem 3rem rgba($color-black, .2);
+    text-align: center;
+    cursor: pointer;
+
+    @include respond(tablet-vert){
+      height: 6rem;
+      width: 6rem;
+      top: 2.3rem;
+      right: 4rem;
+    }
+
+    @include respond(phone){
+      height: 5rem;
+      width: 5rem;
+      top: 3rem;
+      right: 2rem;
+    }
+  }
+
+  &__button--line{
+      position: relative;
+      top: 2.5rem;
+      transition: translate .8s cubic-bezier(0.68, -0.6, 0.32, 1.6);;
+
+    
+      @include respond(tablet-vert){
+        top: 3rem;
+      }
+
+      @include respond(phone){
+        top: 2.4rem;
+      }
+
+
+        &,
+        &::before,
+        &::after{
+          width: 3rem;
+          height: 2px;
+          background-color: $color-gray-dark-3;
+          display: inline-block;
+
+        }
+
+        &::before,
+        &::after{
+        content: "";
+        position: absolute; 
+        transition: all .2s;
+        }
+
+        &::before{
+          // top: -1rem;
+          right: 0;
+        }
+
+        &::after{
+          // top: 1rem;
+          right: 0;
+        }
+  }
+
+  &__background{
+    z-index: 1000;
+    height: 3.5rem;
+    width: 3.5rem;
+    border-radius: 50%;
+    position: fixed;
+    top: 4.5rem;
+    right: 5.5rem;
+    background-image: radial-gradient($color-light, $color-dark);
+    transition: all .5s cubic-bezier(0.83, 0, 0.17, 1);
+
+    @include respond(tablet-vert){
+      height: 5rem;
+      width: 5rem;
+      top: 3.3rem;
+      right: 4.5rem;
+    }
+
+    @include respond(phone){
+      height: 4rem;
+      width: 4rem;
+      top: 3.5rem;
+      right: 2.5rem;
+    }
+  }
+
+  &__nav{
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1002;
+    opacity: 0;
+    visibility: hidden
+  }
+
+  &__list{
+   @include center;
+   list-style: none;
+   text-align: center;
+
+   @include respond(tablet-vert){
+    width: 100%;
+   }
+
+   @include respond(phone){
+    width: 100%;
+   }
+  }
+
+  &__item{
+    margin: 4rem;
+  }
+
+  &__link{
+    display: inline-block;
+    border-radius: 3px;
+    text-decoration: none;
+    color: $color-white;
+    font-size: 4rem;
+    font-weight: 300;
+    padding: 1rem 2rem;
+    background-image: linear-gradient( 110deg, 
+      transparent 0%,
+      transparent 50%, 
+      $color-white 50%);
+    background-size: 230%;
+    transition: all .5s;
+
+    &:hover,
+    &:active{
+      background-position: 100%;
+      color: $color-dark;
+      transform: translateX(1rem);
+    }
+
+    & span{
+      padding-right: 1rem;
+    }
+  }
+}

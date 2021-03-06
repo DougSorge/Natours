@@ -1,0 +1,41 @@
+/* In this universal selector we are removing margin and padding as well as changing the box model to measure the width / height from border to border. This is a standard universal reset. */
+*,
+*::after,
+*::before{
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+/*
+  - We have set the overall font size to 10px so that we can easily manipulate and set our properties using the rem unit type. Nice
+  -However, if we set the root to a px amount, the default font size set by the user on their browser will be overridden. This is bad practice for accessibility reasons.
+  -The solution is to set the root font size as a percentage. In our case, we wanted 10px as a default font size. Assuming that the browser default is set to the standard 16, we have determined that 10 is 62.5% of 16 and set our root size as such.
+  - Since we have determined 62.5% is how we want to scale our properties, everything will be adjusted properly even if the user has set their default size on the broswer to 18 or 24 or whatever else. Our styles will be 62.5% of the users default fs.
+*/
+html{
+  font-size: 62.5%; //1rem = 10px; 10px / 16px = 62.5%
+
+  @include respond(tablet-horiz){ // if <= 1200px these styles apply
+    font-size: 56.25%; //1rem = 9px; 9 / 16 = 56.25%;
+  }
+  
+  @include respond(tablet-vert){ // if <= 900px these styles apply
+    font-size: 50%; //1rem = 8px; 8 / 16 = 50%;
+  }
+
+  @include respond(big-desktop){ //if >= 1800px these styles apply
+    font-size: 75%; //1rem = 12px; 12 / 16 = 75%;
+  
+  }
+}
+
+/* Setting font declarations in the body standardizes the fonts for the whole page. Since styles are inherited all font will now have these properties unless overwritten. */
+body{
+  box-sizing: border-box;
+  padding: 2rem;
+
+  @include respond(tablet-vert){ // if <= 900px these styles apply
+    padding: 0;
+  }
+}
